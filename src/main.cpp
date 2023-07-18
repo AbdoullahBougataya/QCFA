@@ -53,12 +53,12 @@ int calibrate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int bip_time)
 int up(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs)
 {
   unsigned long start_time = millis();
-  while ((millis() - start_time) - distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60)) > 0)
+  while ((millis() - start_time) - (distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
   {
-    ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
   }
 }
 
@@ -79,79 +79,79 @@ int levitate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int time, float mas
   unsigned long start_time = millis();
   while ((millis() - start_time) - time > 0)
   {
-    ESC1.write(((1 - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC2.write(((1 - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC3.write(((1 - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC4.write(((1 - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC1.write(((1 - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC2.write(((1 - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC3.write(((1 + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC4.write(((1 + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
   }
 }
 
 int forward(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs)
 {
   unsigned long start_time = millis();
-  while ((millis() - start_time) - distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60)) > 0)
+  while ((millis() - start_time) - (distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
   {
-    ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC2.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC4.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC2.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC4.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
   }
 }
 
 int backward(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs)
 {
   unsigned long start_time = millis();
-  while ((millis() - start_time) - distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60)) > 0)
+  while ((millis() - start_time) - (distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
   {
-    ESC1.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC3.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC1.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC3.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
   }
 }
 
-int right(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch)
+int right(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch = true)
 {
   unsigned long start_time = millis();
-  while ((millis() - start_time) - distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60)) > 0)
+  while ((millis() - start_time) - (distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
   {
     if (pitch)
     {
-      ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC3.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC4.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC3.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC4.write(((1 + ((speed - 20) / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
     }
     else if (!pitch)
     {
-      // TODO: Check if the it's rotating in the right direction
-      ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC3.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC4.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      // FIX: create the pitch algorithm
+      ESC1.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC2.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC3.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC4.write(((1 - (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
     }
   }
 }
 
-int left(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch)
+int left(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch = true)
 {
   unsigned long start_time = millis();
-  while ((millis() - start_time) - distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60)) > 0)
+  while ((millis() - start_time) - (distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
   {
     if (pitch)
     {
-      ESC1.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC2.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC1.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC2.write(((1 - ((speed - 20) / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
     }
     else if (!pitch)
     {
-      // TODO: Check if the it's rotating in the right direction
-      ESC1.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC2.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-      ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      // FIX: create the pitch algorithm
+      ESC1.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC2.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC3.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+      ESC4.write(((1 + (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
     }
   }
 }
@@ -159,12 +159,12 @@ int left(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, 
 int down(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs)
 {
   unsigned long start_time = millis();
-  while ((millis() - start_time) - distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60)) > 0)
+  while ((millis() - start_time) - (distance / ((speed / 100) * ((2 * PI * radius * KVs * voltage) / 60)) * 1000 > 0))
   {
-    ESC1.write(((1 + (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC2.write(((1 + (speed / 100) - (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC3.write(((1 - (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
-    ESC4.write(((1 - (speed / 100) + (60 * sqrt((mass * 9.8) / (0.5 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC1.write(((1 + (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC2.write(((1 + (speed / 100) - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC3.write(((1 - (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC4.write(((1 - (speed / 100) + (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
   }
 }
 
@@ -184,7 +184,7 @@ int move_x(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass
   }
 }
 
-int move_y(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch)
+int move_y(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch = true)
 {
   if (distance > 0)
   {
@@ -216,7 +216,7 @@ int move_z(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass
   }
 }
 
-int go_to(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float x, float y, float z, float mass, float radius, float voltage, int KVs, bool pitch)
+int go_to(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float x, float y, float z, float mass, float radius, float voltage, int KVs, bool pitch = true)
 {
   if (x == 0)
   {
@@ -250,4 +250,16 @@ int go_to(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float x, fl
   levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
   move_x(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, x, voltage, KVs);
   levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+}
+
+int rotate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float degree, float voltage, int KVs)
+{
+  unsigned long start_time = millis();
+  while ((millis() - start_time) - (degree / (4 * KVs * voltage * 6)) * 1000 > 0)
+  {
+    ESC1.write(((1 - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC2.write(((1 - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC3.write(((1 - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+    ESC4.write(((1 - (60 * sqrt((mass * 9.8) / (2 * 1.225 * PI * pow(radius, 2) * 0.23))) / (0.9 * PI * 2 * radius * voltage * KVs)) * 90));
+  }
 }
