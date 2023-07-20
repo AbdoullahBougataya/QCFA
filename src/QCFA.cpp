@@ -5,8 +5,16 @@
 float land_distance = 0;
 bool pitch = false;
 bool landed = true;
+float mass;
+float radius;
+float voltage;
+int KVs;
+Servo ESC1;
+Servo ESC2;
+Servo ESC3;
+Servo ESC4;
 
-int calibrate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int bip_time)
+int calibrate(int bip_time, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     while ((millis() - start_time) <= bip_time) /* Do this loop for up to 10000mS */
@@ -26,7 +34,7 @@ int calibrate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int bip_time)
     }
 }
 
-int up(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool landed = landed)
+int up(float distance, int speed, bool landed = landed, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     if (landed)
@@ -43,7 +51,7 @@ int up(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, fl
     }
 }
 
-int levitate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int time, float mass, float radius, float voltage, int KVs)
+int levitate(int time, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     while ((millis() - start_time) - time > 0)
@@ -55,7 +63,7 @@ int levitate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int time, float mas
     }
 }
 
-int forward(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs)
+int forward(float distance, int speed, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
@@ -67,7 +75,7 @@ int forward(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mas
     }
 }
 
-int backward(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs)
+int backward(float distance, int speed, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
@@ -79,7 +87,7 @@ int backward(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float ma
     }
 }
 
-int rotate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float degree, float voltage, int KVs)
+int rotate(int degree, int speed, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     while ((millis() - start_time) - (degree / 4 * ((speed / 100) * KVs * voltage * 6 + KVs * voltage * 6)) * 1000 > 0)
@@ -101,7 +109,7 @@ int rotate(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass
     }
 }
 
-int right(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch = pitch)
+int right(float distance, int speed, bool pitch = pitch, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
@@ -116,12 +124,12 @@ int right(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass,
     }
     if (!pitch)
     {
-        rotate(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, 90.0, voltage, KVs);
-        forward(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, distance, voltage, KVs);
+        rotate(90.0, speed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        forward(distance, speed, mass, radius, distance, KVs, ESC1, ESC2, ESC3, ESC4);
     }
 }
 
-int left(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch = pitch)
+int left(float distance, int speed, bool pitch = pitch, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * radius * KVs * voltage) / 60))) * 1000 > 0)
@@ -136,12 +144,12 @@ int left(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, 
     }
     if (!pitch)
     {
-        rotate(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, -90.0, voltage, KVs);
-        forward(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, distance, voltage, KVs);
+        rotate(90.0, speed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        forward(distance, speed, mass, radius, distance, KVs, ESC1, ESC2, ESC3, ESC4);
     }
 }
 
-int down(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, float mass, float radius, float distance, float voltage, int KVs)
+int down(float distance, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
     land_distance -= distance;
@@ -154,91 +162,91 @@ int down(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, float mass, float radiu
     }
 }
 
-int move_x(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs)
+int move_x(float distance, int speed, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     if (distance > 0)
     {
-        forward(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, distance, voltage, KVs);
+        forward(distance, speed, mass, radius, distance, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (distance < 0)
     {
-        backward(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, distance, voltage, KVs);
+        backward(distance, speed, mass, radius, distance, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (distance == 0)
     {
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
 }
 
-int move_y(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool pitch = pitch)
+int move_y(float distance, int speed, bool pitch = pitch, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     if (distance > 0)
     {
-        right(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, distance, voltage, KVs, pitch);
+        right(distance, speed, pitch, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (distance < 0)
     {
-        left(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, distance, voltage, KVs, pitch);
+        left(distance, speed, pitch, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (distance == 0)
     {
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
 }
 
-int move_z(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float mass, float radius, float distance, float voltage, int KVs, bool landed = pitch)
+int move_z(float distance, int speed, bool landed = landed, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     if (distance > 0)
     {
-        up(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, distance, voltage, KVs, landed);
+        up(distance, speed, landed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (distance < 0)
     {
-        down(ESC1, ESC2, ESC3, ESC4, mass, radius, distance, voltage, KVs);
+        down(distance, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (distance == 0)
     {
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
 }
 
-int land(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, float mass, float radius, float voltage, int KVs)
+int land(float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     if (land_distance > 0)
     {
-        down(ESC1, ESC2, ESC3, ESC4, mass, radius, land_distance, voltage, KVs);
+        down(land_distance, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
 }
 
-int go_to(Servo ESC1, Servo ESC2, Servo ESC3, Servo ESC4, int speed, float x, float y, float z, float mass, float radius, float voltage, int KVs, bool pitch = pitch, bool landed = landed)
+int go_to(float x, float y, float z, int speed, bool pitch = pitch, bool landed = landed, float mass = mass, float radius = radius, float voltage = voltage, int KVs = KVs, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     if (x == 0)
     {
-        move_z(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, z, voltage, KVs, landed);
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
-        move_y(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, y, voltage, KVs, false);
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+        move_z(z, speed, landed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        move_y(y, speed, pitch, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (y == 0)
     {
-        move_z(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, z, voltage, KVs, landed);
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
-        move_x(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, x, voltage, KVs);
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+        move_z(z, speed, landed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        move_x(x, speed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
     else if (z == 0 && landed)
     {
-        move_z(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, 1, voltage, KVs, landed);
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
-        rotate(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, acos((x + y) / (x * y)), voltage, KVs);
-        forward(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, sqrt(pow(x, 2) + pow(y, 2)), voltage, KVs);
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
-        move_z(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, -1, voltage, KVs, landed);
-        levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+        move_z(z, speed, landed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        rotate(floor(acos((x + y) / (x * y))), speed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        forward(sqrt(pow(x, 2) + pow(y, 2)), speed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        move_z(z, speed, landed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
     }
-    move_z(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, z, voltage, KVs, landed);
-    levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
-    rotate(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, acos((x + y) / (x * y)), voltage, KVs);
-    forward(ESC1, ESC2, ESC3, ESC4, speed, mass, radius, sqrt(pow(x, 2) + pow(y, 2)), voltage, KVs);
-    levitate(ESC1, ESC2, ESC3, ESC4, 1000, mass, radius, voltage, KVs);
+    move_z(z, speed, landed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+    levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+    rotate(floor(acos((x + y) / (x * y))), speed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+    forward(sqrt(pow(x, 2) + pow(y, 2)), speed, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+    levitate(1000, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
 }
