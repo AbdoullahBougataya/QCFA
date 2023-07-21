@@ -1,0 +1,24 @@
+{
+    "name": "QCFA",
+    "version": "0.0.1",
+    "description": "QCFA (Quadcopter Control Functions using Arduino uno) ",
+    "keywords": "arduino, drone, quadcopter, platformio, dronecode, arduino-boards, drones, arduino-uno, quadcopters, arduino-project, platformio-ide, quadcopter-dynamics, platformio-arduino, quadcopter-animation-code, quadcopter-control",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AbdoullahBougataya/QCFA.git"
+    },
+    "authors": [
+        {
+            "name": "Abdellah Bougataya",
+            "email": "sience.story@gmail.com",
+            "url": "https://github.com/AbdoullahBougataya"
+        }
+    ],
+    "license": "MPL-2.0",
+    "homepage": "https://github.com/AbdoullahBougataya/QCFA.git",
+    "dependencies": {
+        "arduino-libraries/Servo": "~1.2.1"
+    },
+    "frameworks": "Arduino",
+    "platforms": "*"
+}
