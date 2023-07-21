@@ -7,14 +7,14 @@
 ![Static Badge](https://img.shields.io/badge/Runs_on-Arduino_UNO-cyan?style=flat-square&logo=arduino&link=https%3A%2F%2Fstore.arduino.cc%2Fproducts%2Farduino-uno-rev3)
 ![Build Status](https://img.shields.io/badge/build-passing-cyan?style=flat-square&logo=arduino&logoColor=cyan)
 
-######🕹️ **Q**uadcopter **C**ontrol **F**unctions using **A**rduino Uno 🕹️
+###### 🕹️ **Q**uadcopter **C**ontrol **F**unctions using **A**rduino Uno 🕹️
 
 ---
 
-#How to use it ?
-##Installation 💾:
-###Manually:
-####Windows:
+# How to use it ?
+## Installation 💾:
+### Manually:
+#### Windows:
 Please skip this command if you already installed the Servo library:
 ```
 git clone https://github.com/arduino-libraries/Servo.git <YOUR PROJECT DEPENDENCIES DIRECTORY>\Servo
@@ -23,7 +23,7 @@ then Run:
 ```
 git clone https://github.com/AbdoullahBougataya/QCFA.git <YOUR PROJECT DEPENDENCIES DIRECTORY>\QCFA
 ```
-####Mac or Linux:
+#### Mac or Linux:
 Please skip this command if you already installed the Servo library:
 ```
 git clone https://github.com/arduino-libraries/Servo.git <YOUR PROJECT DEPENDENCIES DIRECTORY>/Servo
@@ -33,6 +33,8 @@ then Run:
 git clone https://github.com/AbdoullahBougataya/QCFA.git <YOUR PROJECT DEPENDENCIES DIRECTORY>/QCFA
 ```
 # Use cases
+First set the ESCs to the Arduino UNO pins 3, 5, 6 and 9 as shown in the image below:
+
 Create this `main.cpp` file:
 ```
 #include <Arduino.h>
@@ -68,4 +70,4 @@ void loop()
   exit(0);
 }
 ```
-Then build it to the Arduino UNO
+Then build it to the Arduino UNO.
