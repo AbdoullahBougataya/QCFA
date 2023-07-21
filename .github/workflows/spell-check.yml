@@ -20,3 +20,4 @@ jobs:
 
       - name: Spell check
         uses: codespell-project/actions-codespell@master
+    wordlists: -.wordlist.txt
