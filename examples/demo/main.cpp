@@ -23,7 +23,7 @@ void setup()
   bool calibrated = false; /* Set calibrated to false if it's the first time */
   if (calibrated == false)
   {
-    calibrate(20000); /*20000 µs is the time taken by the ESC to be calibrated (it may vary depending on the ESCs used)*/
+    calibrate(20000); /*20000 ms is the time taken by the ESC to be calibrated (it may vary depending on the ESCs used)*/
   }
 }
 
