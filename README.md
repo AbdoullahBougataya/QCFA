@@ -1,41 +1,58 @@
-![QCFA](./img/QCFA.png)
+<div align='center'><img src='./img/QCFA.png' alt="QCFA" width="350" height="350" style="display: block; margin: 0 auto"/>
 
-![GitHub issues](https://img.shields.io/github/issues/AbdoullahBougataya/QCFA?style=flat-square&logo=github&logoColor=cyan&color=cyan&link=https%3A%2F%2Fgithub.com%2FAbdoullahBougataya%2FQCFA%2Fissues%3Fq%3Dis%253Aopen)
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/AbdoullahBougataya/QCFA/main?style=flat-square&logo=git&logoColor=cyan&color=cyan&link=https%3A%2F%2Fgithub.com%2FAbdoullahBougataya%2FQCFA%2Fcommits%2Fmain)
-![GitHub](https://img.shields.io/github/license/AbdoullahBougataya/QCFA?style=flat-square&logo=firefox&logoColor=cyan&color=cyan&link=https%3A%2F%2Fgithub.com%2FAbdoullahBougataya%2FQCFA%2Fblob%2Fmain%2FLICENSE)
+![GitHub issues](https://img.shields.io/github/issues/AbdoullahBougataya/QCFA?style=flat-square&logo=github&logoColor=cyan&color=cyan&link=https://github.com/AbdoullahBougataya/QCFA/issues?q=is%3Aopen)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/AbdoullahBougataya/QCFA/main?style=flat-square&logo=git&logoColor=cyan&color=cyan&link=https://github.com/AbdoullahBougataya/QCFA/commits/main)
+![GitHub](https://img.shields.io/github/license/AbdoullahBougataya/QCFA?style=flat-square&logo=firefox&logoColor=cyan&color=cyan&link=https://github.com/AbdoullahBougataya/QCFA/blob/main/LICENSE)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AbdoullahBougataya/QCFA?style=flat-square&logo=github&logoColor=cyan&color=cyan&link=%23)
-![Static Badge](https://img.shields.io/badge/Runs_on-Arduino_UNO-cyan?style=flat-square&logo=arduino&link=https%3A%2F%2Fstore.arduino.cc%2Fproducts%2Farduino-uno-rev3)
+![Static Badge](https://img.shields.io/badge/Runs_on-Arduino_UNO-cyan?style=flat-square&logo=arduino&link=https://store.arduino.cc/products/arduino-uno-rev3)
 ![Build Status](https://img.shields.io/badge/build-passing-cyan?style=flat-square&logo=arduino&logoColor=cyan)
 
 ###### 🕹️ **Q**uadcopter **C**ontrol **F**unctions using **A**rduino Uno 🕹️
 
+</div>
+
 ---
 
 # How to use it ?
+
 ## Installation 💾:
+
 ### Manually:
+
 #### Windows:
+
 Please skip this command if you already installed the Servo library:
+
 ```
 git clone https://github.com/arduino-libraries/Servo.git <YOUR PROJECT DEPENDENCIES DIRECTORY>\Servo
 ```
+
 then Run:
+
 ```
 git clone https://github.com/AbdoullahBougataya/QCFA.git <YOUR PROJECT DEPENDENCIES DIRECTORY>\QCFA
 ```
+
 #### Mac or Linux:
+
 Please skip this command if you already installed the Servo library:
+
 ```
 git clone https://github.com/arduino-libraries/Servo.git <YOUR PROJECT DEPENDENCIES DIRECTORY>/Servo
 ```
+
 then Run:
+
 ```
 git clone https://github.com/AbdoullahBougataya/QCFA.git <YOUR PROJECT DEPENDENCIES DIRECTORY>/QCFA
 ```
+
 # Use cases
+
 First set the ESCs to the Arduino UNO pins 3, 5, 6 and 9 as shown in the image below:
 
 Create this `main.cpp` file:
+
 ```
 #include <Arduino.h>
 #include <Servo.h>
@@ -70,4 +87,5 @@ void loop()
   exit(0);
 }
 ```
+
 Then build it to the Arduino UNO.
