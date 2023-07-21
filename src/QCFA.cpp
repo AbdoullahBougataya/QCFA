@@ -17,7 +17,7 @@ Servo ESC4;
 int calibrate(int bip_time, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
     unsigned long start_time = millis();
-    while ((millis() - start_time) <= bip_time) /* Do this loop for up to 10000mS */
+    while ((millis() - start_time) <= bip_time)
     {
         ESC1.write(0);
         ESC2.write(0);
@@ -25,7 +25,7 @@ int calibrate(int bip_time, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = E
         ESC4.write(0);
     }
     unsigned long start_time = millis();
-    while ((millis() - start_time) <= bip_time) /* Do this loop for up to 10000mS */
+    while ((millis() - start_time) <= bip_time)
     {
         ESC1.write(90);
         ESC2.write(90);
@@ -215,6 +215,7 @@ int land(float mass = mass, float radius = radius, float voltage = voltage, int 
     if (land_distance > 0)
     {
         down(land_distance, mass, radius, voltage, KVs, ESC1, ESC2, ESC3, ESC4);
+        land_distance = 0;
     }
 }
 
