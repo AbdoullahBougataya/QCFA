@@ -1,4 +1,4 @@
-![QCFA](./img/QCFA.png)
+<div align='center'><img src='./img/QCFA.png' alt="QCFA" width="350" height="350" style="display: block; margin: 0 auto"/>
 
 ![GitHub issues](https://img.shields.io/github/issues/AbdoullahBougataya/QCFA?style=flat-square&logo=github&logoColor=cyan&color=cyan&link=https%3A%2F%2Fgithub.com%2FAbdoullahBougataya%2FQCFA%2Fissues%3Fq%3Dis%253Aopen)
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/AbdoullahBougataya/QCFA/main?style=flat-square&logo=git&logoColor=cyan&color=cyan&link=https%3A%2F%2Fgithub.com%2FAbdoullahBougataya%2FQCFA%2Fcommits%2Fmain)
@@ -8,6 +8,7 @@
 ![Build Status](https://img.shields.io/badge/build-passing-cyan?style=flat-square&logo=arduino&logoColor=cyan)
 
 ###### 🕹️ **Q**uadcopter **C**ontrol **F**unctions using **A**rduino Uno 🕹️
+</div>
 
 ---
 
