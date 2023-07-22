@@ -5,8 +5,8 @@ on:
   push:
   pull_request:
   schedule:
-    # Run every Tuesday at 8 AM UTC to catch breakage caused by new rules added to Arduino Lint.
-    - cron: "0 8 * * TUE"
+    # Run every Monday at 8 AM UTC to catch breakage caused by new rules added to Arduino Lint.
+    - cron: "0 8 * * MON"
   workflow_dispatch:
   repository_dispatch:
 
@@ -24,5 +24,5 @@ jobs:
           compliance: specification
           library-manager: update
           # Always use this setting for official repositories. Remove for 3rd party projects.
-          official: true
+          official: false
           project-type: library

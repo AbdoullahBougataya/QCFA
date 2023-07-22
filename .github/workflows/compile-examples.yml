@@ -13,8 +13,8 @@ on:
       - "examples/**"
       - "src/**"
   schedule:
-    # Run every Tuesday at 8 AM UTC to catch breakage caused by changes to external resources (libraries, platforms).
-    - cron: "0 8 * * TUE"
+    # Run every Monday at 8 AM UTC to catch breakage caused by changes to external resources (libraries, platforms).
+    - cron: "0 8 * * MON"
   workflow_dispatch:
   repository_dispatch:
 
@@ -73,10 +73,9 @@ jobs:
           fqbn: ${{ matrix.board.fqbn }}
           platforms: ${{ matrix.board.platforms }}
           libraries: |
-            # Install the library from the local path.
             - source-path: ./
-            # Additional library dependencies can be listed here.
-            # See: https://github.com/arduino/compile-sketches#libraries
+            - name: Servo
+              version:1.2.1
           sketch-paths: |
             - examples
           enable-deltas-report: true
