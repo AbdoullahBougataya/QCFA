@@ -16,16 +16,16 @@ Servo ESC4;
 
 int calibrate(int bip_time, Servo ESC1 = ESC1, Servo ESC2 = ESC2, Servo ESC3 = ESC3, Servo ESC4 = ESC4)
 {
-    unsigned long start_time = millis();
-    while ((millis() - start_time) <= bip_time)
+    unsigned long start_time1 = millis();
+    while ((millis() - start_time1) <= bip_time)
     {
         ESC1.write(0);
         ESC2.write(0);
         ESC3.write(0);
         ESC4.write(0);
     }
-    unsigned long start_time = millis();
-    while ((millis() - start_time) <= bip_time)
+    unsigned long start_time2 = millis();
+    while ((millis() - start_time2) <= bip_time)
     {
         ESC1.write(90);
         ESC2.write(90);
