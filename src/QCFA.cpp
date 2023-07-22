@@ -3,8 +3,6 @@
 #include <Servo.h>
 
 float land_distance = 0;
-bool pitch = false;
-bool landed = true;
 
 struct Quadcopter
 {
@@ -39,7 +37,7 @@ int calibrate(struct Quadcopter parameters, int bip_time)
     return 0;
 }
 
-int up(struct Quadcopter parameters, float distance, int speed, bool landed = landed)
+int up(struct Quadcopter parameters, float distance, int speed, bool landed = true)
 {
     signed long start_time = millis();
     if (landed)
@@ -119,7 +117,7 @@ int rotate(struct Quadcopter parameters, int degree, int speed)
     return 0;
 }
 
-int right(struct Quadcopter parameters, float distance, int speed, bool pitch = pitch)
+int right(struct Quadcopter parameters, float distance, int speed, bool pitch = false)
 {
     signed long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
@@ -140,7 +138,7 @@ int right(struct Quadcopter parameters, float distance, int speed, bool pitch = 
     return 0;
 }
 
-int left(struct Quadcopter parameters, float distance, int speed, bool pitch = pitch)
+int left(struct Quadcopter parameters, float distance, int speed, bool pitch = false)
 {
     signed long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
@@ -192,7 +190,7 @@ int move_x(struct Quadcopter parameters, float distance, int speed)
     return 0;
 }
 
-int move_y(struct Quadcopter parameters, float distance, int speed, bool pitch = pitch)
+int move_y(struct Quadcopter parameters, float distance, int speed, bool pitch = false)
 {
     if (distance > 0)
     {
@@ -209,7 +207,7 @@ int move_y(struct Quadcopter parameters, float distance, int speed, bool pitch =
     return 0;
 }
 
-int move_z(struct Quadcopter parameters, float distance, int speed, bool landed = landed)
+int move_z(struct Quadcopter parameters, float distance, int speed, bool landed = true)
 {
     if (distance > 0)
     {
@@ -236,7 +234,7 @@ int land(struct Quadcopter parameters)
     return 0;
 }
 
-int go_to(struct Quadcopter parameters, float x, float y, float z, int speed, bool pitch = pitch, bool landed = landed)
+int go_to(struct Quadcopter parameters, float x, float y, float z, int speed, bool pitch = false, bool landed = true)
 {
     if (x == 0)
     {

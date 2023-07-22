@@ -1,9 +1,6 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-float land_distance = 0;
-bool pitch = false;
-bool landed = true;
 struct Quadcopter
 {
     Servo ESC1;
@@ -17,16 +14,16 @@ struct Quadcopter
 };
 
 int calibrate(struct Quadcopter parameters, int bip_time);
-int up(struct Quadcopter parameters, float distance, int speed, bool landed = landed);
+int up(struct Quadcopter parameters, float distance, int speed, bool landed = true);
 int levitate(struct Quadcopter parameters, int time);
 int forward(struct Quadcopter parameters, float distance, int speed);
 int backward(struct Quadcopter parameters, float distance, int speed);
 int rotate(struct Quadcopter parameters, int degree, int speed);
-int right(struct Quadcopter parameters, float distance, int speed, bool pitch = pitch);
-int left(struct Quadcopter parameters, float distance, int speed, bool pitch = pitch);
+int right(struct Quadcopter parameters, float distance, int speed, bool pitch = false);
+int left(struct Quadcopter parameters, float distance, int speed, bool pitch = false);
 int down(struct Quadcopter parameters, float distance);
 int move_x(struct Quadcopter parameters, float distance, int speed);
-int move_y(struct Quadcopter parameters, float distance, int speed, bool pitch = pitch);
-int move_z(struct Quadcopter parameters, float distance, int speed, bool landed = landed);
+int move_y(struct Quadcopter parameters, float distance, int speed, bool pitch = false);
+int move_z(struct Quadcopter parameters, float distance, int speed, bool landed = true);
 int land(struct Quadcopter parameters);
-int go_to(struct Quadcopter parameters, float x, float y, float z, int speed, bool pitch = pitch, bool landed = landed);
+int go_to(struct Quadcopter parameters, float x, float y, float z, int speed, bool pitch = false, bool landed = true);
