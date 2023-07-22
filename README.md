@@ -4,7 +4,7 @@
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/AbdoullahBougataya/QCFA/main?style=flat-square&logo=git&logoColor=cyan&color=cyan&link=https://github.com/AbdoullahBougataya/QCFA/commits/main)
 ![GitHub](https://img.shields.io/github/license/AbdoullahBougataya/QCFA?style=flat-square&logo=firefox&logoColor=cyan&color=cyan&link=https://github.com/AbdoullahBougataya/QCFA/blob/main/LICENSE)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AbdoullahBougataya/QCFA?style=flat-square&logo=github&logoColor=cyan&color=cyan&link=%23)
-![Static Badge](https://img.shields.io/badge/Runs_on-Arduino_UNO-cyan?style=flat-square&logo=arduino&link=https://store.arduino.cc/products/arduino-uno-rev3)
+![Static Badge](https://img.shields.io/badge/Runs_on-Arduino_UNO-cyan?style=flat-square&logo=arduino&logoColor=cyan&link=https://store.arduino.cc/products/arduino-uno-rev3)
 ![Build Status](https://img.shields.io/badge/build-passing-cyan?style=flat-square&logo=arduino&logoColor=cyan)
 
 ###### 🕹️ **Q**uadcopter **C**ontrol **F**unctions using **A**rduino Uno 🕹️
