@@ -8,7 +8,7 @@ struct Quadcopter
     Servo ESC3;
     Servo ESC4;
     float mass;
-    float radius;
+    float propellers_radius;
     float voltage;
     int KVs;
 };
@@ -27,3 +27,4 @@ int move_y(struct Quadcopter parameters, float distance, int speed, bool pitch =
 int move_z(struct Quadcopter parameters, float distance, int speed, bool landed = true);
 int land(struct Quadcopter parameters);
 int go_to(struct Quadcopter parameters, float x, float y, float z, int speed, bool pitch = false, bool landed = true);
+int stop(struct Quadcopter parameters);
