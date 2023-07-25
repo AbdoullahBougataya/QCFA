@@ -1,6 +1,6 @@
 {
     "name": "QCFA",
-    "version": "0.0.2-beta.2",
+    "version": "0.0.2-beta.3",
     "description": "QCFA (Quadcopter Control Functions using Arduino uno) ",
     "keywords": "arduino, drone, quadcopter, platformio, dronecode, arduino-boards, drones, arduino-uno, quadcopters, arduino-project, platformio-ide, quadcopter-dynamics, platformio-arduino, quadcopter-animation-code, quadcopter-control",
     "repository": {
