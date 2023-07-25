@@ -177,7 +177,7 @@ Build the file to the arduino and put it on the land (_preferably outdoor_) then
 
 ## Contributing
 
-For more informations about how to contribute to this project please visit [CONTRIBUTING.md](./CONTRIBUTING.md)
+For more information about how to contribute to this project please visit [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## Show your support
 
