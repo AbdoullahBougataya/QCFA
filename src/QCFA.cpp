@@ -57,6 +57,9 @@ int up(struct Quadcopter parameters, float distance, int speed, bool landed = tr
 
 int levitate(struct Quadcopter parameters, int time)
 {
+    parameters.mass = parameters.mass / 1000;
+    parameters.propellers_radius = parameters.propellers_radius / 1000;
+
     signed long start_time = millis();
     while ((millis() - start_time) - time > 0)
     {
@@ -70,6 +73,8 @@ int levitate(struct Quadcopter parameters, int time)
 
 int forward(struct Quadcopter parameters, float distance, int speed)
 {
+    parameters.mass = parameters.mass / 1000;
+    parameters.propellers_radius = parameters.propellers_radius / 1000;
     signed long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
     {
@@ -83,6 +88,8 @@ int forward(struct Quadcopter parameters, float distance, int speed)
 
 int backward(struct Quadcopter parameters, float distance, int speed)
 {
+    parameters.mass = parameters.mass / 1000;
+    parameters.propellers_radius = parameters.propellers_radius / 1000;
     signed long start_time = millis();
     while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
     {
@@ -96,6 +103,8 @@ int backward(struct Quadcopter parameters, float distance, int speed)
 
 int rotate(struct Quadcopter parameters, int degree, int speed)
 {
+    parameters.mass = parameters.mass / 1000;
+    parameters.propellers_radius = parameters.propellers_radius / 1000;
     signed long start_time = millis();
     while ((millis() - start_time) - (degree / 4 * ((speed / 100) * parameters.KVs * parameters.voltage * 6 + parameters.KVs * parameters.voltage * 6)) * 1000 > 0)
     {
@@ -119,10 +128,12 @@ int rotate(struct Quadcopter parameters, int degree, int speed)
 
 int right(struct Quadcopter parameters, float distance, int speed, bool pitch = false)
 {
-    signed long start_time = millis();
-    while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
+    if (pitch)
     {
-        if (pitch)
+        parameters.mass = parameters.mass / 1000;
+        parameters.propellers_radius = parameters.propellers_radius / 1000;
+        signed long start_time = millis();
+        while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
         {
             parameters.ESC1.write(((1 - (speed / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
             parameters.ESC2.write(((1 - (speed / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
@@ -141,9 +152,11 @@ int right(struct Quadcopter parameters, float distance, int speed, bool pitch = 
 int left(struct Quadcopter parameters, float distance, int speed, bool pitch = false)
 {
     signed long start_time = millis();
-    while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
+    if (pitch)
     {
-        if (pitch)
+        parameters.mass = parameters.mass / 1000;
+        parameters.propellers_radius = parameters.propellers_radius / 1000;
+        while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
         {
             parameters.ESC1.write(((1 - ((speed - 20) / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
             parameters.ESC2.write(((1 - ((speed - 20) / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
@@ -161,6 +174,8 @@ int left(struct Quadcopter parameters, float distance, int speed, bool pitch = f
 
 int down(struct Quadcopter parameters, float distance)
 {
+    parameters.mass = parameters.mass / 1000;
+    parameters.propellers_radius = parameters.propellers_radius / 1000;
     signed long start_time = millis();
     land_distance -= distance;
     while ((millis() - start_time) - (distance / (4 * (40 / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60)) * 1000 > 0))

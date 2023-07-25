@@ -12,10 +12,10 @@ void setup()
   int motor2_esc_pin = 10;
   int motor3_esc_pin = 9;
   int motor4_esc_pin = 11;
-  drone.mass = 0.3525;             /*variable of the mass */
-  drone.propellers_radius = 0.038; /*variable of the propeller radius */
-  drone.voltage = 22.8;            /*variable of the battery voltage */
-  drone.KVs = 2450;                /*variable of the KVs of the motor */
+  drone.mass = 352.5;           /*variable of the mass in (g) */
+  drone.propellers_radius = 38; /*variable of the propeller radius in (mm) */
+  drone.voltage = 22.8;         /*variable of the battery voltage in (v) */
+  drone.KVs = 2450;             /*variable of the KVs of the motor (KV) */
   /* The pulse width attached to pins 6, 9, 10 and 11
    have a minimum of 1000 µs and maximum of 2000 µs */
   drone.ESC1.attach(motor1_esc_pin, 1000, 2000);
