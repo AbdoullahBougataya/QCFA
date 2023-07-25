@@ -31,7 +31,7 @@ void setup()
 
 void loop()
 {
-  up(drone, 2, 30);           /*up(Quadcopter parameter, hight, speed)*/
+  up(drone, 2, 30);           /*up(Quadcopter parameter, height, speed)*/
   levitate(drone, 1000);      /*levitate(Quadcopter parameter, levitation time)*/
   forward(drone, 2, 30);      /*forward(Quadcopter parameter, distance, speed)*/
   backward(drone, 2, 30);     /*backward(Quadcopter parameter, distance, speed)*/
@@ -40,9 +40,9 @@ void loop()
   left(drone, 2, 30);         /*left(Quadcopter parameter, distance, speed)*/
   move_x(drone, 2, 30);       /*move_x(Quadcopter parameter, distance, speed)*/
   move_y(drone, 2, 30);       /*move_y(Quadcopter parameter, distance, speed)*/
-  move_z(drone, 2, 30);       /*move_z(Quadcopter parameter, hight, speed)*/
+  move_z(drone, 2, 30);       /*move_z(Quadcopter parameter, height, speed)*/
   go_to(drone, -4, 4, 0, 30); /*goto(Quadcopter parameter, x coordinates, y coordinates, z coordinates, speed)*/
-  down(drone, 2);             /*down(Quadcopter parameter, hight)*/
+  down(drone, 2);             /*down(Quadcopter parameter, height)*/
   land(drone);                /*land(Quadcopter parameter)*/
   stop(drone);                /*stop(Quadcopter parameter)*/
   exit(0);                    /*exit from the loop*/

@@ -14,7 +14,7 @@
 
 Here is a step by step guide to install QCFA from the Arduino Libraries manager:
 
-- **Step 1**: Open the Arduino IDE and click to the "Sketch" menu and then *Include Library > Manage Libraries*:
+- **Step 1**: Open the Arduino IDE and click to the "Sketch" menu and then _Include Library > Manage Libraries_:
 
   ![](./img/step01.png)
 
@@ -36,7 +36,7 @@ Here is a step by step guide to install QCFA from the Arduino Libraries manager:
 
 #### Windows
 
-Open the terminal then run: (*Please skip this command if you have already installed the Servo library*)
+Open the terminal then run: (_Please skip this command if you have already installed the Servo library_)
 
 ```powershell
 git clone https://github.com/arduino-libraries/Servo.git %USERPROFILE%/Documents/Arduino/libraries/Servo
@@ -50,7 +50,7 @@ git clone https://github.com/AbdoullahBougataya/QCFA.git %USERPROFILE%/Documents
 
 #### Mac or Linux
 
-Open the terminal then run: (*Please skip this command if you have already installed the Servo library*)
+Open the terminal then run: (_Please skip this command if you have already installed the Servo library_)
 
 ```bash
 git clone https://github.com/arduino-libraries/Servo.git ~/Documents/Arduino/libraries/Servo
@@ -109,7 +109,7 @@ void loop()
 }
 ```
 
-Change `drone.mass`, `drone.propellers_radius`, `drone.voltage`,  `drone.KVs` and `calibrated` to their given value:
+Change `drone.mass`, `drone.propellers_radius`, `drone.voltage`, `drone.KVs` and `calibrated` to their given value:
 
 `drone.mass`: the total mass of the drone in (Kg).
 
@@ -121,15 +121,15 @@ Change `drone.mass`, `drone.propellers_radius`, `drone.voltage`,  `drone.KVs` an
 
 `calibrated`: `true `if the ESCs are already calibrated to 1 ms pulse width.
 
-Then Build the file to the Arduino UNO. If everything is setup correctly, the motor will start beeping several times (This is called the ESC calibration), it might take about 40 seconds then the program will stop running. If an error occurs please open an issue, I will do my best to help you with your problem. 
+Then Build the file to the Arduino UNO. If everything is setup correctly, the motor will start beeping several times (This is called the ESC calibration), it might take about 40 seconds then the program will stop running. If an error occurs please open an issue, I will do my best to help you with your problem.
 
-**Code explanation:** 
+**Code explanation:**
 
 > first we include the `QCFA.h` library, then we we get the drone parameters from the Quadcopter `struct` , we set the drone parameters as shown. Then attach the ESCs from 1 to 4 to the pins 6, 9, 10 and 11 with a pulse width of 1 ms. The drone will calibrate in 40 seconds. Entering the `loop()` the quadcopter will stop and exit from the loop. In other words the will do nothing.
 
 Add `up(drone, 2, 30);`, `levitate(drone, 1000);`, `forward(drone, 2, 30);` , `backward(drone, 2, 30);` and `land(drone);` to the file, then the file will look like that:
 
-``````c++
+```c++
 #include <Arduino.h>
 
 #include <Servo.h>
@@ -163,7 +163,7 @@ void setup()
 
 void loop()
 {
-  up(drone, 2, 30);           /*up(Quadcopter parameter, hight, speed)*/
+  up(drone, 2, 30);           /*up(Quadcopter parameter, height, speed)*/
   levitate(drone, 1000);      /*levitate(Quadcopter parameter, levitation time)*/
   forward(drone, 2, 30);      /*forward(Quadcopter parameter, distance, speed)*/
   backward(drone, 2, 30);     /*backward(Quadcopter parameter, distance, speed)*/
@@ -171,9 +171,9 @@ void loop()
   stop(drone);                /*stop(Quadcopter parameter)*/
   exit(0);                    /*exit from the loop*/
 }
-``````
+```
 
-Build the file to the arduino and put it on the land (*preferably outdoor*) then The drone will go up for two meters and it will levitate for 1 second then the drone will go forward and backward for 2 meters then it will  land.
+Build the file to the arduino and put it on the land (_preferably outdoor_) then The drone will go up for two meters and it will levitate for 1 second then the drone will go forward and backward for 2 meters then it will land.
 
 ## Contributing
 
@@ -187,6 +187,6 @@ Please ⭐️ this repository if this project helped you!
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
-## Special Thanks 
+## Special Thanks
 
 A special thanks to the supporters on patreon.
