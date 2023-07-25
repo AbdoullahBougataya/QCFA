@@ -18,9 +18,7 @@ Here is a step by step guide to install QCFA from the Arduino Libraries manager:
 
   ![](./img/step01.png)
 
-- **Step 2**: Click in the search bar at the top:
-
-![](./img/step02.png)
+- **Step 2**: Click in the search bar at the top:![](./img/step02.png)
 
 - **Step 3**: write down "QCFA":
 
@@ -64,7 +62,7 @@ then run:
 git clone https://github.com/AbdoullahBougataya/QCFA.git ~/Documents/Arduino/libraries/QCFA
 ```
 
-# Use cases
+## Use cases
 
 First set the ESCs to the Arduino UNO pins 3, 5, 6 and 9 as shown in the image below:
 
@@ -87,8 +85,8 @@ void setup()
   int motor2_esc_pin = 10;
   int motor3_esc_pin = 9;
   int motor4_esc_pin = 11;
-  drone.mass = 0.3525;  /*variable of the total mass of the quadcopter in (Kg) */
-  drone.propellers_radius = 0.038; /*variable of the propeller radius in (m) */
+  drone.mass = 0.3525;  /*variable of the total mass of the quadcopter in (g) */
+  drone.propellers_radius = 0.038; /*variable of the propeller radius in (mm) */
   drone.voltage = 22.8; /*variable of the battery voltage in (v) */
   drone.KVs = 2450;     /*variable of the KVs of the motor in (KV) */
   /* The pulse width attached to pins 6, 9, 10 and 11
@@ -113,14 +111,82 @@ void loop()
 
 Change `drone.mass`, `drone.propellers_radius`, `drone.voltage`,  `drone.KVs` and `calibrated` to their given value:
 
->`drone.mass`: the total mass of the drone in (Kg).
->
->`drone.propellers_radius`: the radius of the propellers in (m).
->
->`drone.voltage`: the battery voltage in (v).
->
->`drone.KVs`: the motor's flow factor in (KV).
->
->`calibrated`: `true `if the ESCs are already calibrated to 1 ms pulse width.
+`drone.mass`: the total mass of the drone in (Kg).
+
+`drone.propellers_radius`: the radius of the propellers in (m).
+
+`drone.voltage`: the battery voltage in (v).
+
+`drone.KVs`: the motor's flow factor in (KV).
+
+`calibrated`: `true `if the ESCs are already calibrated to 1 ms pulse width.
 
 Then Build the file to the Arduino UNO. If everything is setup correctly, the motor will start beeping several times (This is called the ESC calibration), it might take about 40 seconds then the program will stop running. If an error occurs please open an issue, I will do my best to help you with your problem. 
+
+**Code explanation:** 
+
+> first we include the `QCFA.h` library, then we we get the drone parameters from the Quadcopter `struct` , we set the drone parameters as shown. Then attach the ESCs from 1 to 4 to the pins 6, 9, 10 and 11 with a pulse width of 1 ms. The drone will calibrate in 40 seconds. Entering the `loop()` the quadcopter will stop and exit from the loop. In other words the will do nothing.
+
+Add `up(drone, 2, 30);`, `levitate(drone, 1000);`, `forward(drone, 2, 30);` , `backward(drone, 2, 30);` and `land(drone);` to the file, then the file will look like that:
+
+``````c++
+#include <Arduino.h>
+
+#include <Servo.h>
+
+#include <QCFA.h>
+
+struct Quadcopter drone; /*get the drone parameters from the quadcopter structure*/
+
+void setup()
+{
+  int motor1_esc_pin = 6;
+  int motor2_esc_pin = 10;
+  int motor3_esc_pin = 9;
+  int motor4_esc_pin = 11;
+  drone.mass = 352.5;           /*variable of the mass in (g) */
+  drone.propellers_radius = 38; /*variable of the propeller radius in (mm) */
+  drone.voltage = 22.8;         /*variable of the battery voltage in (v) */
+  drone.KVs = 2450;             /*variable of the KVs of the motor (KV) */
+  /* The pulse width attached to pins 6, 9, 10 and 11
+   have a minimum of 1000 µs and maximum of 2000 µs */
+  drone.ESC1.attach(motor1_esc_pin, 1000, 2000);
+  drone.ESC2.attach(motor2_esc_pin, 1000, 2000);
+  drone.ESC3.attach(motor3_esc_pin, 1000, 2000);
+  drone.ESC4.attach(motor4_esc_pin, 1000, 2000);
+  bool calibrated = false; /* Set calibrated to false if it's the first time */
+  if (calibrated == false)
+  {
+    calibrate(drone, 20000); /*20 s is the time taken by the ESC to make that beep so this calibration process will take 40s (it may vary depending on the ESCs used)*/
+  }
+}
+
+void loop()
+{
+  up(drone, 2, 30);           /*up(Quadcopter parameter, hight, speed)*/
+  levitate(drone, 1000);      /*levitate(Quadcopter parameter, levitation time)*/
+  forward(drone, 2, 30);      /*forward(Quadcopter parameter, distance, speed)*/
+  backward(drone, 2, 30);     /*backward(Quadcopter parameter, distance, speed)*/
+  land(drone);                /*land(Quadcopter parameter)*/
+  stop(drone);                /*stop(Quadcopter parameter)*/
+  exit(0);                    /*exit from the loop*/
+}
+``````
+
+Build the file to the arduino and put it on the land (*preferably outdoor*) then The drone will go up for two meters and it will levitate for 1 second then the drone will go forward and backward for 2 meters then it will  land.
+
+## Contributing
+
+For more informations about how to contribute to this project please visit [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## Show your support
+
+Please ⭐️ this repository if this project helped you!
+
+<a href="https://patreon.com/abdellahbougataya?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator&utm_content=join_link">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
+## Special Thanks 
+
+A special thanks to the supporters on patreon.
