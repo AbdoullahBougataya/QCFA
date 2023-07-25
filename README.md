@@ -1,4 +1,4 @@
-<div align='center'><img src='https://github.com/AbdoullahBougataya/QCFA/img/QCFA.png' alt="QCFA" width="400" height="400" style="display: block; margin: 0 auto"/></div>
+<div align='center'><img src='https://github.com/AbdoullahBougataya/QCFA/blob/main/img/QCFA.png' alt="QCFA" width="400" height="400" style="display: block; margin: 0 auto"/></div>
 
 [![GitHub issues](https://img.shields.io/github/issues/AbdoullahBougataya/QCFA?style=flat-square&logo=github&logoColor=cyan&color=cyan)](https://github.com/AbdoullahBougataya/QCFA/issues?q=is%3Aopen)[![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/AbdoullahBougataya/QCFA/main?style=flat-square&logo=git&logoColor=cyan&color=cyan)](https://github.com/AbdoullahBougataya/QCFA/commits/main)[![GitHub](https://img.shields.io/github/license/AbdoullahBougataya/QCFA?style=flat-square&logo=firefox&logoColor=cyan&color=cyan)](https://github.com/AbdoullahBougataya/QCFA/blob/main/LICENSE)[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AbdoullahBougataya/QCFA?style=flat-square&logo=github&logoColor=cyan&color=cyan)](#)[![Static Badge](https://img.shields.io/badge/Runs_on-Arduino_UNO-cyan?style=flat-square&logo=arduino&logoColor=cyan)](https://store.arduino.cc/products/arduino-uno-rev3)[![Build Status](https://img.shields.io/badge/build-passing-cyan?style=flat-square&logo=arduino&logoColor=cyan)](https://github.com/AbdoullahBougataya/QCFA/actions/workflows/check-arduino.yml)
 
@@ -16,23 +16,23 @@ Here is a step by step guide to install QCFA from the Arduino Libraries manager:
 
 - **Step 1**: Open the Arduino IDE and click to the "Sketch" menu and then _Include Library > Manage Libraries_:
 
-  ![](https://github.com/AbdoullahBougataya/QCFA/img/step01.png)
+  ![](https://github.com/AbdoullahBougataya/QCFA/blob/main/img/step01.png)
 
 - **Step 2**: Click in the search bar at the top:
 
-  ![](https://github.com/AbdoullahBougataya/QCFA/img/step02.png)
+  ![](https://github.com/AbdoullahBougataya/QCFA/blob/main/img/step02.png)
 
 - **Step 3**: write down "QCFA":
 
-  ![](https://github.com/AbdoullahBougataya/QCFA/img/step03.png)
+  ![](https://github.com/AbdoullahBougataya/QCFA/blob/main/img/step03.png)
 
 - **Step 4**: click install on the first result:
 
-  ![](https://github.com/AbdoullahBougataya/QCFA/img/step04.png)
+  ![](https://github.com/AbdoullahBougataya/QCFA/blob/main/img/step04.png)
 
 - **Step 5**: then press "Close":
 
-  ![](https://github.com/AbdoullahBougataya/QCFA/img/step05.png)
+  ![](https://github.com/AbdoullahBougataya/QCFA/blob/main/img/step05.png)
 
 ### Manually
 
@@ -68,7 +68,7 @@ git clone https://github.com/AbdoullahBougataya/QCFA.git ~/Documents/Arduino/lib
 
 First set the ESCs to the Arduino UNO pins 6, 9, 10 and 11 as shown in the image below:
 
-![](https://github.com/AbdoullahBougataya/QCFA/img/Circuit.png)
+![](https://github.com/AbdoullahBougataya/QCFA/blob/main/img/Circuit.png)
 
 Create this `demo.ino` file:
 
