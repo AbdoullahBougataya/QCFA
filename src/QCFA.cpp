@@ -86,21 +86,6 @@ int forward(struct Quadcopter parameters, float distance, int speed)
     return 0;
 }
 
-int backward(struct Quadcopter parameters, float distance, int speed)
-{
-    parameters.mass = parameters.mass / 1000;
-    parameters.propellers_radius = parameters.propellers_radius / 1000;
-    signed long start_time = millis();
-    while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
-    {
-        parameters.ESC1.write(((1 - ((speed - 20) / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
-        parameters.ESC2.write(((1 - (speed / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
-        parameters.ESC3.write(((1 + ((speed - 20) / 100) + (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
-        parameters.ESC4.write(((1 + (speed / 100) + (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
-    }
-    return 0;
-}
-
 int rotate(struct Quadcopter parameters, int degree, int speed)
 {
     parameters.mass = parameters.mass / 1000;
@@ -126,6 +111,29 @@ int rotate(struct Quadcopter parameters, int degree, int speed)
     return 0;
 }
 
+int backward(struct Quadcopter parameters, float distance, int speed, bool rotation = true)
+{
+    if (!rotation)
+    {
+        parameters.mass = parameters.mass / 1000;
+        parameters.propellers_radius = parameters.propellers_radius / 1000;
+        signed long start_time = millis();
+        while ((millis() - start_time) - (distance / (4 * (speed / 100) * ((2 * PI * parameters.propellers_radius * parameters.KVs * parameters.voltage) / 60))) * 1000 > 0)
+        {
+            parameters.ESC1.write(((1 - ((speed - 20) / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
+            parameters.ESC2.write(((1 - (speed / 100) - (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
+            parameters.ESC3.write(((1 + ((speed - 20) / 100) + (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
+            parameters.ESC4.write(((1 + (speed / 100) + (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
+        }
+    }
+    else if (rotation)
+    {
+        rotate(parameters, 180, speed);
+        forward(parameters, distance, speed);
+    }
+    return 0;
+}
+
 int right(struct Quadcopter parameters, float distance, int speed, bool pitch = false)
 {
     if (pitch)
@@ -141,7 +149,7 @@ int right(struct Quadcopter parameters, float distance, int speed, bool pitch = 
             parameters.ESC4.write(((1 + ((speed - 20) / 100) + (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
         }
     }
-    if (!pitch)
+    else if (!pitch)
     {
         rotate(parameters, 90.0, speed);
         forward(parameters, distance, speed);
@@ -164,7 +172,7 @@ int left(struct Quadcopter parameters, float distance, int speed, bool pitch = f
             parameters.ESC4.write(((1 + (speed / 100) + (60 * sqrt((parameters.mass * 9.8) / (2 * 1.225 * PI * pow(parameters.propellers_radius, 2) * 0.23))) / (0.9 * PI * 2 * parameters.propellers_radius * parameters.voltage * parameters.KVs)) * 90));
         }
     }
-    if (!pitch)
+    else if (!pitch)
     {
         rotate(parameters, 90.0, speed);
         forward(parameters, distance, speed);
@@ -188,7 +196,7 @@ int down(struct Quadcopter parameters, float distance)
     return 0;
 }
 
-int move_x(struct Quadcopter parameters, float distance, int speed)
+int move_x(struct Quadcopter parameters, float distance, int speed, bool rotation = false)
 {
     if (distance > 0)
     {
@@ -196,7 +204,7 @@ int move_x(struct Quadcopter parameters, float distance, int speed)
     }
     else if (distance < 0)
     {
-        backward(parameters, distance, speed);
+        backward(parameters, distance, speed, !rotation);
     }
     else if (distance == 0)
     {
@@ -262,7 +270,7 @@ int go_to(struct Quadcopter parameters, float x, float y, float z, int speed, bo
     {
         move_z(parameters, z, speed, landed);
         levitate(parameters, 1000);
-        move_x(parameters, x, speed);
+        move_x(parameters, x, speed, pitch);
         levitate(parameters, 1000);
     }
     else if (z == 0 && landed)
