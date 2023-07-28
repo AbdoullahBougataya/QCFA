@@ -1,4 +1,6 @@
 {
-    "board": "arduino:avr:uno",
-    "sketch": "examples/demo/demo.ino"
+    "board": "arduino:megaavr:uno2018",
+    "sketch": "examples/demo/demo.ino",
+    "programmer": "medbg",
+    "configuration": "mode=on"
 }
