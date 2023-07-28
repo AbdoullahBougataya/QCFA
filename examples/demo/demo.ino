@@ -4,8 +4,6 @@
 
 #include <QCFA.h>
 
-struct Quadcopter drone; /*get the drone parameters from the quadcopter structure*/
-
 int buttonPressed(int button)
 {
   static int lastStates = 0;
@@ -18,23 +16,25 @@ int buttonPressed(int button)
   return false;
 }
 
+struct Quadcopter drone; /*get the drone drone from the drone structure*/
+
 void setup()
 {
   int motor1_esc_pin = 6;
   int motor2_esc_pin = 10;
   int motor3_esc_pin = 9;
   int motor4_esc_pin = 11;
-  drone.mass = 352.5;           /*variable of the mass in (g) */
-  drone.propellers_radius = 38; /*variable of the propeller radius in (mm) */
-  drone.voltage = 22.8;         /*variable of the battery voltage in (v) */
-  drone.KVs = 2450;             /*variable of the KVs of the motor (KV) */
   /* The pulse width attached to pins 6, 9, 10 and 11
    have a minimum of 1000 µs and maximum of 2000 µs */
   drone.ESC1.attach(motor1_esc_pin, 1000, 2000);
   drone.ESC2.attach(motor2_esc_pin, 1000, 2000);
   drone.ESC3.attach(motor3_esc_pin, 1000, 2000);
   drone.ESC4.attach(motor4_esc_pin, 1000, 2000);
-  bool calibrated = false; /* Set calibrated to false if it's the first time */
+  drone.mass = 352.5;           /*variable of the mass in (g) */
+  drone.propellers_radius = 38; /*variable of the propeller radius in (mm) */
+  drone.voltage = 22.8;         /*variable of the battery voltage in (v) */
+  drone.KVs = 2450;             /*variable of the KVs of the motor (KV) */
+  bool calibrated = false;      /* Set calibrated to false if it's the first time */
   if (calibrated == false)
   {
     calibrate(drone, 20000); /*20 s is the time taken by the ESC to make that beep so this calibration process will take 40s (it may vary depending on the ESCs used)*/

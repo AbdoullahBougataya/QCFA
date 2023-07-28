@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <Servo.h>
-
+#ifndef QCFA_H
+#define QCFA_H
 struct Quadcopter
 {
     Servo ESC1;
@@ -28,3 +29,4 @@ int move_z(struct Quadcopter parameters, float distance, int speed, bool landed 
 int land(struct Quadcopter parameters);
 int go_to(struct Quadcopter parameters, float x, float y, float z, int speed, bool pitch = false, bool landed = true);
 int stop(struct Quadcopter parameters);
+#endif

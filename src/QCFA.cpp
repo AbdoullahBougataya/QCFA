@@ -1,20 +1,8 @@
 #include <Arduino.h>
-
+#include <QCFA.h>
 #include <Servo.h>
 
 float land_distance = 0;
-
-struct Quadcopter
-{
-    Servo ESC1;
-    Servo ESC2;
-    Servo ESC3;
-    Servo ESC4;
-    float mass;
-    float propellers_radius;
-    float voltage;
-    int KVs;
-};
 
 int calibrate(struct Quadcopter parameters, int bip_time)
 {
